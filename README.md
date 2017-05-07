@@ -49,7 +49,7 @@ This code is available on
 
 Install this package through [Composer](https://getcomposer.org/).
 Edit your project's `composer.json` file to require
-`LuizCesar/OlhoVivoAPI`.
+`luizcesar/olho-vivo-api`.
 
 Create *composer.json* file
 ```json
@@ -58,7 +58,7 @@ Create *composer.json* file
     "type": "project",
     "require": {
         "php": ">=5.6",
-        "LuizCesar/OlhoVivoAPI": "*"
+        "luizcesar/olho-vivo-api": "*"
     }
 }
 ```
@@ -69,7 +69,7 @@ and run `composer update`
 run this command in your command line:
 
 ```bash
-composer require LuizCesar/OlhoVivoAPI
+composer require luizcesar/olho-vivo-api
 ```
 
 ### Configs

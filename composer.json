@@ -1,5 +1,5 @@
 {
-    "name": "LuizCesar/OlhoVivoAPI",
+    "name": "luizcesar/olho-vivo-api",
     "type": "library",
     "description": "OlhoVivoAPI is a PHP implementation for SPTrans' OlhoVivo.",
     "keywords": ["SPTrans","api", "olhoVivo", "Sao Paulo", "Public Transport"],
