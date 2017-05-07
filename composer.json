@@ -1,0 +1,23 @@
+{
+    "name": "LuizCesar/OlhoVivoAPI",
+    "type": "library",
+    "description": "OlhoVivoAPI is a PHP implementation for SPTrans' OlhoVivo.",
+    "keywords": ["SPTrans","api", "olhoVivo", "Sao Paulo", "Public Transport"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luiz César DS",
+            "email": "luizcesard@gmail.com",
+            "homepage": "http://t.me/o0DS0o"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "LuizCesar\\OlhoVivoAPI\\": "src/"
+        }
+    }
+} 
