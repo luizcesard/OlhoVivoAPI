@@ -109,9 +109,9 @@ foreach($arrivalsMap as $line)
 }
 ```
 
-And an example output in bash:
+And an example output:
 
-```bash
+```
 Arrival forecast for bus stop at R DR.  ALBUQUERQUE LINS
 Issued at: 13:41
 8000-10 TERM. LAPA
