@@ -92,7 +92,7 @@ $aBusStop = $busStops[rand(0,count($busStops)-1)]; //get a random bus stop of $b
 $arrivalForecast = $spTrans->getArrivalForecastByStop($aBusStop);
 $arrivalsMap = $arrivalForecast->getArrivalsMap(); //Map of Lines and array of buses
 
-echo "<pre>Arrival forecast for bus stop at {$aBusStop->getName()}" . PHP_EOL .
+echo "Arrival forecast for bus stop at {$aBusStop->getName()}" . PHP_EOL .
 	"Issued at: {$arrivalForecast->getTime()}" . PHP_EOL;
 
 //The way to iterate over SplObjectStorage objects.
