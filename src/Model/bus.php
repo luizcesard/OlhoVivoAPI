@@ -10,6 +10,7 @@
 
 namespace LuizCesar\OlhoVivoAPI\Model;
 
+use LuizCesar\OlhoVivoAPI\Model\BusColor;
 use LuizCesar\OlhoVivoAPI\Model\Coordinate;
 
 /**
@@ -18,18 +19,25 @@ use LuizCesar\OlhoVivoAPI\Model\Coordinate;
  * @method string getId(void) @return bus unique Id;
  * @method bool isAdapt(void) @return true if vehicle is accessible.
  * @method Coordinate getCoord(void) @return the refence to the actual position of this bus.
+ * @method int getColor(void) @return a BusColor constant.
  */
 class Bus
 {
     private $id;
     private $isAdapt;
     private $coord;
+	private $color;
   
     public function __construct($id, $isAdapt = false, Coordinate $coord)
     {
+		if(!preg_match('/^[1-8][0-9]{4}$/',$id))
+			throw new \Exception("Bus: Invalid bus id");
+		
         $this->id = (string)$id;
         $this->isAdapt = (bool)$isAdapt;
         $this->coord = $coord;
+		$this->color = BusColor::getBusColor($id);
+		
     }
   
     public function getId() : string
@@ -44,4 +52,8 @@ class Bus
     {
         return $this->coord;
     }
+    public function getColor() : int
+	{
+		return $this->color;
+	}
 }

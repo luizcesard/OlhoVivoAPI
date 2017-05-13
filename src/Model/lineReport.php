@@ -46,7 +46,7 @@ class LineReport
     {
         return $this->time;
     }
-    public function getBuses() : Bus
+    public function getBuses() : array
     {
         return $this->buses;
     }

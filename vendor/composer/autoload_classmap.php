@@ -76,6 +76,7 @@ return array(
     'GuzzleHttp\\UriTemplate' => $vendorDir . '/guzzlehttp/guzzle/src/UriTemplate.php',
     'LuizCesar\\OlhoVivoAPI\\Model\\ArrivalForecast' => $baseDir . '/src/Model/arrivalForecast.php',
     'LuizCesar\\OlhoVivoAPI\\Model\\Bus' => $baseDir . '/src/Model/bus.php',
+    'LuizCesar\\OlhoVivoAPI\\Model\\BusColor' => $baseDir . '/src/Model/busColor.php',
     'LuizCesar\\OlhoVivoAPI\\Model\\BusForecast' => $baseDir . '/src/Model/busForecast.php',
     'LuizCesar\\OlhoVivoAPI\\Model\\BusLine' => $baseDir . '/src/Model/busLine.php',
     'LuizCesar\\OlhoVivoAPI\\Model\\BusStop' => $baseDir . '/src/Model/busStop.php',

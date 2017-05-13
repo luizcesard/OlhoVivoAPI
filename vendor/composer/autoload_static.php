@@ -123,6 +123,7 @@ class ComposerStaticInit049160610c4749216fbce535bc7c0519
         'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
         'LuizCesar\\OlhoVivoAPI\\Model\\ArrivalForecast' => __DIR__ . '/../..' . '/src/Model/arrivalForecast.php',
         'LuizCesar\\OlhoVivoAPI\\Model\\Bus' => __DIR__ . '/../..' . '/src/Model/bus.php',
+        'LuizCesar\\OlhoVivoAPI\\Model\\BusColor' => __DIR__ . '/../..' . '/src/Model/busColor.php',
         'LuizCesar\\OlhoVivoAPI\\Model\\BusForecast' => __DIR__ . '/../..' . '/src/Model/busForecast.php',
         'LuizCesar\\OlhoVivoAPI\\Model\\BusLine' => __DIR__ . '/../..' . '/src/Model/busLine.php',
         'LuizCesar\\OlhoVivoAPI\\Model\\BusStop' => __DIR__ . '/../..' . '/src/Model/busStop.php',
