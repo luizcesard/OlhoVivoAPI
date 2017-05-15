@@ -41,7 +41,7 @@ class BusLine
         if (!$codLine || !is_bool($isCircular) ||
       !preg_match('/^[0-9Nn][0-9]{2}[A-Za-z0-9]$/', $codSign) ||
       !preg_match('/^[1-2]$/', $way) ||
-      !in_array($type, [10,21,31,41]) ||
+      !in_array($type, [10,11,21,31,41]) ||
       !strlen($name1) || !strlen($name2)) {
             throw new \Exception("Failed to get right parameters on BusLine.");
         }
