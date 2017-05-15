@@ -69,7 +69,7 @@ class BusStop
 	 */
 	public function setTimeTable(\SplObjectStorage $timeTable) : bool
 	{
-		if (!$timeTable || get_class($timeTable) == 'SplObjectStorage' ||
+		if (!$timeTable || get_class($timeTable) !== 'SplObjectStorage' ||
 			!(count($timeTable)>0))
 			return false;
 		
