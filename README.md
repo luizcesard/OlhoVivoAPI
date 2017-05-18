@@ -8,9 +8,9 @@ PHP implementation of SPTrans' OlhoVivo API v2.1.
 ## Table of Contents
 - [Introduction](#introduction)
 - [Instructions](#instructions)
-    -[Get you token](#get-your-token)
-    -[Require this package with Composer](#require-this-package-with-composer)
-    -[Configs](#configs)
+	-[Get you token](#get-your-token)
+	-[Require this package with Composer](#require-this-package-with-composer)
+	-[Configs](#configs)
 - [Usage Example](#usage-example)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
