@@ -8,9 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Entities;
 
-use LuizCesar\OlhoVivoAPI\Model\Coordinate;
+use LuizCesar\OlhoVivoAPI\Base\Coordinate;
 
 /**
  * A bus stop.
@@ -36,6 +36,7 @@ class BusStop
 	 */
     public function __construct($stop_id, $stop_name, Coordinate $coord, $stop_ref = '', $timeTable = null)
     {
+		if(!is_numeric($stop_id)) throw new \Exception("Invalid stop id.");
         $this->coord = $coord;
         $this->cod = (string)$stop_id;
         $this->na = $stop_name;
@@ -74,7 +75,7 @@ class BusStop
 			return false;
 		
 		foreach($timeTable as $key)
-			if (get_class($key) != 'LuizCesar\OlhoVivoAPI\Model\BusLine')
+			if (get_class($key) != 'LuizCesar\OlhoVivoAPI\Entities\BusLine')
 				return false;
 		
 		$this->timeTable = $timeTable;

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Base;
 
 /**
  * Geographical coordinates.

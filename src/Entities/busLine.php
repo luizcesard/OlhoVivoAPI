@@ -8,7 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Entities;
+
+use LuizCesar\OlhoVivoAPI\Base\Patterns;
 
 /**
  * A bus line.
@@ -17,8 +19,7 @@ namespace LuizCesar\OlhoVivoAPI\Model;
  * @method bool isCircular(void) @return true if it is a one-way line.
  * @method string getCodSign(void) @return the visual line code (as seen on the sign).
  * @method int getWay(void) @return 1 for Primary->Secondary or 2 for way back.
- * @method string getType(void) @return '10' for std Line or one of
- * ['21','31','41'] for demand lines.
+ * @method string getType(void) @return '10' for std Line.
  * @method string getName1(void) @return Line's sign Name (shown if way == 1).
  * @method string getName2(void) @return Line's sign Name (shown if way == 2).
  * @method string getInfo(void) @return Line datails (if any), such as days served.
@@ -27,6 +28,10 @@ namespace LuizCesar\OlhoVivoAPI\Model;
  */
 class BusLine
 {
+	  
+	const WAY_FIRST_LEG = 0;
+	const WAY_SECOND_LEG = 1;
+	
     private $cod;
     private $isCircular;
     private $codSign;
@@ -35,13 +40,13 @@ class BusLine
     private $name1;
     private $name2;
     private $info;
-  
+	
     public function __construct($codLine, $isCircular=false, $codSign, $way, $type, $name1, $name2, $info='')
     {
         if (!$codLine || !is_bool($isCircular) ||
-      !preg_match('/^[0-9Nn][0-9]{2}[A-Za-z0-9]$/', $codSign) ||
-      !preg_match('/^[1-2]$/', $way) ||
-      !in_array($type, [10,11,21,31,41]) ||
+      !preg_match(Patterns::CODE_SIGN, $codSign) ||
+      !preg_match(Patterns::WAY, $way) ||
+      !preg_match(Patterns::TYPE_SIGN,$type) ||
       !strlen($name1) || !strlen($name2)) {
             throw new \Exception("Failed to get right parameters on BusLine.");
         }
@@ -95,6 +100,6 @@ class BusLine
     }
     public function getActuralSignName() : string
     {
-        return $this->way==1?$this->name1:$this->name2;
+        return $this->way==self::FIRST_LEG?$this->name1:$this->name2;
     }
 }

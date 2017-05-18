@@ -8,10 +8,11 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Bulletins;
 
-use LuizCesar\OlhoVivoAPI\Model\Bus;
-use LuizCesar\OlhoVivoAPI\Model\Coordinate;
+use LuizCesar\OlhoVivoAPI\Base\Coordinate;
+use LuizCesar\OlhoVivoAPI\Base\Patterns;
+use LuizCesar\OlhoVivoAPI\Entities\Bus;
 
 /**
  * Simple forecast of a bus arrival.
@@ -32,7 +33,7 @@ class BusForecast
   
     private function timeAssertion($time)
     {
-        if (!preg_match('/[0-2]*[0-9]:[0-5][0-9]/', $time)) {
+        if (!preg_match(Patterns::TIME, $time)) {
             throw new \Exception("Time must be formatted as: 00:00");
         }
         $this->time = $time;

@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Entities;
 
 /**
  * Bus exclusive pathway.
@@ -21,8 +21,10 @@ class Busway
     private $cod;
     private $name;
   
-    public function __construct($id, $name)
+    public function __construct($id, string $name)
     {
+		if(!is_numeric($id) || strlen($name) < 1)
+			throw new \Exception("Unable to construct new Busway.");
         $this->cod = (string)$id;
         $this->name = $name;
     }

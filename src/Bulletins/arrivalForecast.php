@@ -8,7 +8,9 @@
  * file that was distributed with this source code.
  */
 
-namespace LuizCesar\OlhoVivoAPI\Model;
+namespace LuizCesar\OlhoVivoAPI\Bulletins;
+
+use LuizCesar\OlhoVivoAPI\Base\Patterns;
 
 /**
  * ArrivalForecast objects may represent:
@@ -34,13 +36,13 @@ class ArrivalForecast
 	 */
     public function __construct(string $time, \Splobjectstorage $objMap, $typeOfReport = self::ARRIVALS_BY_BUSSTOP)
     {
-        if (!preg_match('/[0-2]*[0-9]:[0-5][0-9]/', $time)) {
+        if (!preg_match(Patterns::TIME, $time)) {
             throw new \Exception("Time must be formatted as: 00:00");
         }
         $this->time = $time;
 		
 		//$objMap keys type confirmation
-        $classes = ['LuizCesar\OlhoVivoAPI\Model\BusLine','LuizCesar\OlhoVivoAPI\Model\BusStop'];
+        $classes = ['LuizCesar\OlhoVivoAPI\Entities\BusLine','LuizCesar\OlhoVivoAPI\Entities\BusStop'];
 		foreach($objMap as $key)
 			if (get_class($key) != $classes[$typeOfReport-1]) {
 				$a = (explode('\\',$classes[$typeOfReport-1]))[3];

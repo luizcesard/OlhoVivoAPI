@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/packagist/l/Longman/telegram-bot.svg)](https://github.com/php-telegram-bot/core/LICENSE.md)
 
 
-PHP implementation of SPTrans' OlhoVivo API.
+PHP implementation of SPTrans' OlhoVivo API v2.1.
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -18,19 +18,23 @@ PHP implementation of SPTrans' OlhoVivo API.
 
 ## Introduction
 
-This is a pure PHP Object Oriented implementation  of [SPTrans'](http://www.sptrans.com.br/) OlhoVivoAPI.
+This is a pure PHP Object Oriented implementation  of [SPTrans'](http://www.sptrans.com.br/) OlhoVivoAPI v2.1.
 OlhoVivo official API provides real-time data of São Paulo's (BR) public transportation bus system.
-All methods [documented](http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1) in the official API have been implemented but the 'CarregarDetalhes' (that doesn't seen to work on the official plataform).
+All methods [documented](http://www.sptrans.com.br/desenvolvedores/APIOlhoVivo/Documentacao.aspx?1) in the official API have been implemented.
 
 This API can:
-- Search for Bus Lines.
+- Search for Bus Lines (optionally by way).
 - Search for Bus Stops.
 - Search for Bus Stops served by a given Bus Line.
 - List actual São Paulo's Busways (BRT).
+- Report all Companies that provide transportation services at a time.
+- Report all vehicles servicing the city by Bus Line and their position at a time.
 - Report all vehicles available on a given Bus Line and they position at a time.
+- Report all vehicles transmiting position from operator's garage (optionally) by Bus Line.
 - Forecast buses arrivals on a given Bus Stop for a given Bus Line at a time.
 - Forecast buses arrivals at all Bus Stops served by a given Bus Line.
 - Forecast buses arrivals at a given Bus Stop for all Bus Lines that serve it at a time.
+- Get KMZ files with actual traffic conditions.
 
 Objects of this package may be used locally together with [GTFS tables](http://www.sptrans.com.br/desenvolvedores/GTFS.aspx).
 
@@ -79,12 +83,15 @@ Open the olhoVivo.php and fill it with your api-key.
 ## Usage Example
 
 ```php
+use LuizCesar\OlhoVivoAPI\Bulletins\ArrivalForecast;
+use LuizCesar\OlhoVivoAPI\Entities\BusLine;
+use LuizCesar\OlhoVivoAPI\Entities\BusStop;
 use LuizCesar\OlhoVivoAPI\OlhoVivo;
 
 //get an instance of OlhoVivo object
 $spTrans = new OlhoVivo();
 
-$aBusLine = ($spTrans->seekLines("875A"))[0]; //The first match of a line search
+$aBusLine = ($spTrans->seekLines("875A",BusLine::WAY_FIRST_LEG))[0]; //The first match of a line search
 $busStops = $spTrans->seekBusStopsByLine($aBusLine); //all stops served by $aBusLine
 $aBusStop = $busStops[rand(0,count($busStops)-1)]; //get a random bus stop of $busStops'
 
@@ -192,6 +199,25 @@ Issued at: 13:41
 	| 14:46 | 62096  |     NO     |
 	===============================
 ```
+## Change Log
+
+### v2.1
+
+- Implemented the new version (v2.1) of SPTrans' API.
+- All methods are implemented.
+- Company objects.
+- Better error handling.
+- Objects redesigned.
+
+### v0.2
+
+- Bug Fixes.
+- Ability to retrieve bus color.
+
+### v0.1
+
+- Launched first version.
+
 ## Troubleshooting
 
 Please, if you find any bugs, report them on [issues](https://github.com/luizcesard/OlhoVivoAPI/issues) page.
