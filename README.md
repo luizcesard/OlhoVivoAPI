@@ -201,7 +201,11 @@ Issued at: 13:41
 ```
 ## Change Log
 
-### v2.1
+### v2.1.0.1
+
+- Bug solving.
+
+### v2.1.0
 
 - Implemented the new version (v2.1) of SPTrans' API.
 - All methods are implemented.

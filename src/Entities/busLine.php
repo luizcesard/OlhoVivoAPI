@@ -100,6 +100,6 @@ class BusLine
     }
     public function getActuralSignName() : string
     {
-        return $this->way==self::FIRST_LEG?$this->name1:$this->name2;
+        return $this->way==self::WAY_FIRST_LEG?$this->name1:$this->name2;
     }
 }
