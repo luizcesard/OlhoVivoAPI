@@ -58,10 +58,11 @@ class LinesReport
     }
     public function getBusesByLine(BusLine $line) : array
     {
+		
 		if(!$line) throw new \Exception("getBusesByLine: a BusLine must be given.");
 		foreach($this->data as $aBusLine)
 			if($line->getCod() === $aBusLine->getCod())
-				return $this->data[$aBusLine];
+				return !is_null($this->data[$aBusLine]) ? $this->data[$aBusLine] : [];
 		return [];
     }
     public function getBusLines() : array

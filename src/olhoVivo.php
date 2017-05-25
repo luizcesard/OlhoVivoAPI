@@ -11,7 +11,7 @@
 namespace LuizCesar\OlhoVivoAPI;
 
 
-define('TOKEN', 'api_key'); //OlhoVivo Token
+define('TOKEN', 'a0e1c3ba89847a05a70dddbdb2b8af625cbd388356542f35c7d9949ab8a787a7'); //OlhoVivo Token
 define('BASE_URI','http://api.olhovivo.sptrans.com.br/v2.1/');
 
 use GuzzleHttp\Client;
@@ -310,20 +310,22 @@ class OlhoVivo
                                 ]
         );
         $forecast = new \SplObjectStorage();
-        foreach ($response['p']['l'] as $aLine) {
-		  foreach($aLine['vs'] as $busForecast){
-			  $buses[] = new BusForecast(
-				  $busForecast['t'],
-				  new Bus($busForecast['p'],
-						  $busForecast['a'],
-						  new PositionReport(
-							  $busForecast['ta'],
-							  new Coordinate($busForecast['py'], $busForecast['px'])
-						  )
-				  )
-			  );
-		  }
-        }
+        if(isset($response['p']))
+			foreach ($response['p']['l'] as $aLine) {
+				$buses = [];
+				foreach($aLine['vs'] as $busForecast){
+					$buses[] = new BusForecast(
+						$busForecast['t'],
+						new Bus($busForecast['p'],
+								$busForecast['a'],
+								new PositionReport(
+									$busForecast['ta'],
+									new Coordinate($busForecast['py'], $busForecast['px'])
+								)
+						)
+					);
+				}
+			}
         $forecast[$line] = $buses;
         return new ArrivalForecast($response['hr'], $forecast);
     }
@@ -340,27 +342,28 @@ class OlhoVivo
     {
         $response = $this->execute('Previsao/Linha', ['codigoLinha'  => $line->getCod()]);
         $stopsForecasts = new \SplObjectStorage();
-        foreach ($response['ps'] as $stopForecast) {
-            $stop = new BusStop(
-                $stopForecast['cp'],
-                $stopForecast['np'],
-                new Coordinate($stopForecast['py'], $stopForecast['px'])
-            );
-            
-            foreach ($stopForecast['vs'] as $busForecast) {
-                $buses[] = new BusForecast(
-					$busForecast['t'],
-					new Bus($busForecast['p'],
-							$busForecast['a'],
-							new PositionReport(
-								$busForecast['ta'],
-								new Coordinate($busForecast['py'], $busForecast['px'])
-							)
-					)
+        if(isset($response['ps']))
+			foreach ($response['ps'] as $stopForecast) {
+				$stop = new BusStop(
+					$stopForecast['cp'],
+					$stopForecast['np'],
+					new Coordinate($stopForecast['py'], $stopForecast['px'])
 				);
-            }
-            $stopsForecasts[$stop] = $buses;
-        }
+				$buses = [];
+				foreach ($stopForecast['vs'] as $busForecast) {
+					$buses[] = new BusForecast(
+						$busForecast['t'],
+						new Bus($busForecast['p'],
+								$busForecast['a'],
+								new PositionReport(
+									$busForecast['ta'],
+									new Coordinate($busForecast['py'], $busForecast['px'])
+								)
+						)
+					);
+				}
+				$stopsForecasts[$stop] = $buses;
+			}
         
         return new ArrivalForecast($response['hr'], $stopsForecasts, ArrivalForecast::ARRIVALS_BY_BUSLINE);
     }
@@ -376,34 +379,36 @@ class OlhoVivo
     public function getArrivalForecastByStop(BusStop $stop) : ArrivalForecast
     {
         $response = $this->execute('Previsao/Parada', ['codigoParada'  => $stop->getCod()]);
+
         $linesForecasts = new \SplObjectStorage();
-        foreach ($response['p']['l'] as $lineForecast) {
-            $line = new BusLine(
-                $lineForecast['cl'],
-                false,
-                substr($lineForecast['c'], 0, 4),
-                $lineForecast['sl'] - 1,
-                substr($lineForecast['c'], 5, 2),
-                $lineForecast['lt0'],
-                $lineForecast['lt1']
-            );
-            
-            foreach ($lineForecast['vs'] as $busForecast) {
-                $buses[] = new BusForecast(
-					$busForecast['t'],
-					new Bus($busForecast['p'],
-							$busForecast['a'],
-							new PositionReport(
-								$busForecast['ta'],
-								new Coordinate($busForecast['py'], $busForecast['px'])
-							)
-					)
+        if(isset($response['p']))
+			foreach ($response['p']['l'] as $lineForecast) {
+				$line = new BusLine(
+					$lineForecast['cl'],
+					false,
+					substr($lineForecast['c'], 0, 4),
+					$lineForecast['sl'] - 1,
+					substr($lineForecast['c'], 5, 2),
+					$lineForecast['lt0'],
+					$lineForecast['lt1']
 				);
-            }
-            
-            $linesForecasts[$line] = $buses;
-        }
-        
+				$buses = [];
+				foreach ($lineForecast['vs'] as $busForecast) {
+					$buses[] = new BusForecast(
+						$busForecast['t'],
+						new Bus($busForecast['p'],
+								$busForecast['a'],
+								new PositionReport(
+									$busForecast['ta'],
+									new Coordinate($busForecast['py'], $busForecast['px'])
+								)
+						)
+					);
+				}
+				
+				$linesForecasts[$line] = $buses;
+			}
+        var_dump($linesForecasts);
         return new ArrivalForecast($response['hr'], $linesForecasts);
     }
 

@@ -23,11 +23,11 @@ abstract class Patterns
 	const TYPE = '[1-5][0-9]*';
 	const CODE_SIGN = '/^'.self::SIGN.'$/';
 	const TYPE_SIGN = '/^'.self::TYPE.'$/';
-	const ROUTE_ID = '/^'.self::SIGN.'-'.self::MODE.'$/';
+	const ROUTE_ID = '/^'.self::SIGN.'-'.self::TYPE.'$/';
 	
 	const WAY_ID = '[0-1]';
 	const WAY = '/^'.self::WAY_ID.'$/';
-	const TRIP_ID = '/^'.self::SIGN.'-'.self::MODE.'-'.self::WAY_ID.'$/';
+	const TRIP_ID = '/^'.self::SIGN.'-'.self::TYPE.'-'.self::WAY_ID.'$/';
 	
 	const AREA_ID = '[1-8]';
 	const AREA = '/^'.self::AREA_ID.'$/';

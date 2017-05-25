@@ -18,7 +18,7 @@ use LuizCesar\OlhoVivoAPI\Base\Patterns;
  * @method string getCod(void) @return unique line code (different for each way).
  * @method bool isCircular(void) @return true if it is a one-way line.
  * @method string getCodSign(void) @return the visual line code (as seen on the sign).
- * @method int getWay(void) @return 1 for Primary->Secondary or 2 for way back.
+ * @method int getWay(void) @return @const WAY_FIRST_LEG for Primary->Secondary or @const WAY_SECOND_LEG for way back.
  * @method string getType(void) @return '10' for std Line.
  * @method string getName1(void) @return Line's sign Name (shown if way == 1).
  * @method string getName2(void) @return Line's sign Name (shown if way == 2).
@@ -98,7 +98,7 @@ class BusLine
     {
         return $this->codSign . '-' . $this->type;
     }
-    public function getActuralSignName() : string
+    public function getActualSignName() : string
     {
         return $this->way==self::WAY_FIRST_LEG?$this->name1:$this->name2;
     }

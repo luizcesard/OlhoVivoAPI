@@ -46,9 +46,9 @@ class Bus
     {
         return (string)$this->id;
     }
-    public function isAdapt() : bool
+    public function isAcc() : bool
     {
-        return (bool)$this->isAdapt;
+        return (bool)$this->isAcc;
     }
     public function getCoord() : PositionReport
     {
