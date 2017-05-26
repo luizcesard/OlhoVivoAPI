@@ -11,7 +11,7 @@
 namespace LuizCesar\OlhoVivoAPI;
 
 
-define('TOKEN', 'a0e1c3ba89847a05a70dddbdb2b8af625cbd388356542f35c7d9949ab8a787a7'); //OlhoVivo Token
+define('TOKEN', 'api_key'); //OlhoVivo Token
 define('BASE_URI','http://api.olhovivo.sptrans.com.br/v2.1/');
 
 use GuzzleHttp\Client;
@@ -38,6 +38,8 @@ class OlhoVivo
 	const DIST_CENTER = 'BC'        ;
 	const CENTER_DIST = 'CB'        ;
 
+	private static $instance = null;
+	
     /**
      * Guzzle Client object
 	 * When correctly iniciated by the initialize method, stores session cookies.
@@ -45,12 +47,24 @@ class OlhoVivo
      * @var \GuzzleHttp\Client
      */
     private $client;
-      
-    public function __construct()
+    
+	//Singleton Client.
+    protected function __construct()
     {
         $this->initialize();
     }
+    private function __clone()
+    {
+	}
+	private function __wakeup()
+	{
+	}
 
+	public static function getInstance()
+	{
+		return is_null(static::$instance) ? new OlhoVivo() : static::$instance;
+	}
+	
     /**
 	 * This method is ran on object construction and in the case of the session
 	 * expires.
