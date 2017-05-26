@@ -62,7 +62,10 @@ class OlhoVivo
 
 	public static function getInstance()
 	{
-		return is_null(static::$instance) ? new OlhoVivo() : static::$instance;
+		if(is_null(static::$instance))
+			self::$instance = new OlhoVivo();
+		
+		return self::$instance;
 	}
 	
     /**
