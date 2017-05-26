@@ -20,6 +20,38 @@ namespace LuizCesar\OlhoVivoAPI\Entities;
  */
 class Company
 {
+	
+	/**
+	 * Constants representing each actual Company.
+	 */
+	const SANTA_BRIGIDA = 'Santa Brígida';
+	const GATO_PRETO 	= 'Gato Preto';
+	const SPENCER 		= 'Spencer Transp Rod';
+	const NORTE_BUSS 	= 'Norte Buss';
+	const SAMBAIBA 		= 'Sambaíba';
+	const VIP 			= 'VIP Transp Urb';
+	const QUALIBUS 		= 'Qualibus';
+	const TRANSUNIAO	= 'Transunião';
+	const ETU 			= 'ETU EXPANDIR';
+	const AMBIENTAL 	= 'Ambiental';
+	const ALLIBUS 		= 'Allibus';
+	const PESSEGO 		= 'Pêssego';
+	const EXPRESS 		= 'Express Trans Urb';
+	const VIA_SUL 		= 'Via Sul';
+	const IMPERIAL 		= 'Imperial';
+	const MOVE_BUSS 	= 'Move Buss';
+	const CIDADE_DUTRA 	= 'Cidade Dutra';
+	const TUPI 			= 'TUPI';
+	const MOBI 			= 'Mobibrasil';
+	const TRANSWOLFF 	= 'Transwolff';
+	const A2 			= 'A2';
+	const CAMPO_BELO 	= 'Campo Belo';
+	const GATUSA 		= 'Gatusa';
+	const TRANSKUBA 	= 'Transkuba';
+	const TRANSPASS 	= 'TRANSPASS';
+	const TRANSCAP		= 'TRANSCAP';
+	const ALFA 			= 'Alfa';
+	
 	private $operationAreaId;
 	private $id;
 	private $name;
