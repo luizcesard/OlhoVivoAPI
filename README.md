@@ -201,6 +201,12 @@ Issued at: 13:41
 ```
 ## Change Log
 
+### v2.2
+
+- Implementation of `getOwners()` on `Bus` Objects.
+- Issues fixes.
+- OlhoVivo object is now retrieved by the `getInstance()` method.
+
 ### v2.1.0.1
 
 - Bug solving.
