@@ -47,8 +47,7 @@ class OlhoVivo
      * @var \GuzzleHttp\Client
      */
     private $client;
-    
-	//Singleton Client.
+     
     protected function __construct()
     {
         $this->initialize();
@@ -343,7 +342,7 @@ class OlhoVivo
 					);
 				}
 			}
-        $forecast[$line] = $buses;
+        $forecast[$line] = isset($buses) ? $buses : [];
         return new ArrivalForecast($response['hr'], $forecast);
     }
     
@@ -379,7 +378,7 @@ class OlhoVivo
 						)
 					);
 				}
-				$stopsForecasts[$stop] = $buses;
+				$stopsForecasts[$stop] = isset($buses) ? $buses : [];
 			}
         
         return new ArrivalForecast($response['hr'], $stopsForecasts, ArrivalForecast::ARRIVALS_BY_BUSLINE);
@@ -423,7 +422,7 @@ class OlhoVivo
 					);
 				}
 				
-				$linesForecasts[$line] = $buses;
+				$linesForecasts[$line] = isset($buses) ? $buses : [];
 			}
         var_dump($linesForecasts);
         return new ArrivalForecast($response['hr'], $linesForecasts);
