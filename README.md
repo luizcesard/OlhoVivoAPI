@@ -89,7 +89,7 @@ use LuizCesar\OlhoVivoAPI\Entities\BusStop;
 use LuizCesar\OlhoVivoAPI\OlhoVivo;
 
 //get an instance of OlhoVivo object
-$spTrans = new OlhoVivo();
+$spTrans = OlhoVivo::getInstance();
 
 $aBusLine = ($spTrans->seekLines("875A",BusLine::WAY_FIRST_LEG))[0]; //The first match of a line search
 $busStops = $spTrans->seekBusStopsByLine($aBusLine); //all stops served by $aBusLine
@@ -105,13 +105,13 @@ echo "Arrival forecast for bus stop at {$aBusStop->getName()}" . PHP_EOL .
 //The way to iterate over SplObjectStorage objects.
 foreach($arrivalsMap as $line)
 {
-	echo "{$line->getFullSignCode()} {$line->getActuralSignName()}" . PHP_EOL .
+	echo "{$line->getFullSignCode()} {$line->getActualSignName()}" . PHP_EOL .
 	"\t_______________________________" . PHP_EOL .
 	"\t| Time  | Bus Id | Accessible |" . PHP_EOL .
 	"\t|-------|--------|------------|" . PHP_EOL;
 	foreach($arrivalsMap[$line] as $busForecast)
 		echo "\t| {$busForecast->getTime()} | {$busForecast->getBus()->getId()}  |    " .
-		($busForecast->getBus()->isAdapt() == true ? ' YES' : ' NO ') . "    |" . PHP_EOL;
+		($busForecast->getBus()->isAcc() == true ? ' YES' : ' NO ') . "    |" . PHP_EOL;
 	echo "\t===============================" . PHP_EOL . PHP_EOL;
 }
 ```
